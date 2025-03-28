@@ -1,5 +1,5 @@
 # Set wallpaper before launching DWM
-feh --bg-scale ~/.config/wallpapers/new.jpg &
+feh --bg-scale ~/.config/wallpapers/skullt.png &
 
 # Update status bar with battery and time
 while true; do
