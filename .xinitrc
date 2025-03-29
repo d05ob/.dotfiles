@@ -11,5 +11,8 @@ while true; do
     sleep 10
 done &  # Run in the background
 
+# for tap to click
+xinput set-prop "DELL0A6E:00 06CB:CE81 Touchpad" "libinput Tapping Enabled" 1
+
 exec dwm  # Start DWM
 
