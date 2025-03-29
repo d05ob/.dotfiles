@@ -20,7 +20,7 @@ static const char col_cyan[]        = "#005577";
 
 static const char *colors[][3] = {
     [SchemeNorm] = { "#bbbbbb", "#1d1f21", "#282a2e" }, // Light gray text, dark bg
-    [SchemeSel]  = { "#ffffff", "#1d1f21", "#5e81ac" }, // White text, same bg, soft blue border
+    [SchemeSel]  = { "#ffffff", "#1d1f21", "#ffffff" }, // White text, same bg, soft blue border
 };
 
 /* tagging */
