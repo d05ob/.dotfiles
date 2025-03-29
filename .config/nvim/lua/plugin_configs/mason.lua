@@ -4,7 +4,7 @@ require("mason-lspconfig").setup({
     ensure_installed = {
         "pyright",        -- Python
         "rust_analyzer",  -- Rust
-        "tsserver",       -- JavaScript & TypeScript
+        "typescript-language-server",
         "html",           -- HTML
         "cssls",          -- CSS
         "clangd",         -- C & C++
