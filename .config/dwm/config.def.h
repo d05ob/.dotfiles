@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -20,7 +21,7 @@ static const char col_cyan[]        = "#005577";
 
 static const char *colors[][3] = {
     [SchemeNorm] = { "#bbbbbb", "#1d1f21", "#282a2e" }, // Light gray text, dark bg
-    [SchemeSel]  = { "#ffffff", "#1d1f21", "#5e81ac" }, // White text, same bg, soft blue border
+    [SchemeSel]  = { "#ffffff", "#1d1f21", "#ffffff" }, // White text, same bg, soft blue border
 };
 
 /* tagging */
@@ -33,6 +34,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "st",       NULL,       NULL,       0,            0,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
@@ -66,14 +68,19 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "brave", NULL };
 static const char *explorercmd[]  = { "thunar", NULL };
-static const char *screenshot_region[]  = { "scrot", "-s", "~/Pictures/screenshot_%Y-%m-%d_%H-%M-%S.png", NULL };
-static const char *screenshot_full[]    = { "scrot", "~/Pictures/screenshot_%Y-%m-%d_%H-%M-%S.png", NULL };
+static const char *discordcmd[]  = { "discord", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-    { 0,                        XK_Print,      spawn,             {.v = screenshot_region } },
-    { ShiftMask,                XK_Print,      spawn,             {.v = screenshot_full } },
+    { 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("brightnessctl set +10%") },
+    { 0,        XF86XK_MonBrightnessDown,      spawn,          SHCMD("brightnessctl set 10%-") },
+    { 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("pamixer -i 5") },
+    { 0,         XF86XK_AudioLowerVolume,      spawn,          SHCMD("pamixer -d 5") },
+    { 0,                XF86XK_AudioMute,      spawn,          SHCMD("pamixer -t") },
+    { 0,                        XK_Print,      spawn,          SHCMD("scrot -s ~/Pictures/screenshot_%Y-%m-%d_%H-%M-%S.png")},
+    { ShiftMask,                XK_Print,      spawn,          SHCMD("scrot ~/Pictures/screenshot_%Y-%m-%d_%H-%M-%S.png")},
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_d,      spawn,          {.v = discordcmd } },
 	{ MODKEY,                       XK_n,      spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = explorercmd } },
 	{ MODKEY,                  XK_Return,      spawn,          {.v = termcmd } },
@@ -82,10 +89,10 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
