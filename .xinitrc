@@ -1,18 +1,36 @@
+
 # Set wallpaper before launching DWM
 feh --bg-scale ~/.config/wallpapers/skullt.png &
 
-# Update status bar with battery and time
+update_status() {
+    BATTERY=$(upower -i $(upower -e | grep 'BAT') | grep -E "percentage" | awk '{print $2}')
+    
+    # Get volume level using pactl
+    VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | head -n1)
+    MUTE=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
+    [[ "$MUTE" == "yes" ]] && VOLUME="Muted"
+
+    DATE=$(date "+%a %I:%M %p")  # Example: Sun 07:45 PM
+    xsetroot -name "Vol: $VOLUME | Bat: $BATTERY | $DATE"
+}
+
+# Run once immediately
+update_status
+
+# Listen for volume changes
+pactl subscribe | while read -r event; do
+    case "$event" in
+        *"sink"*) update_status ;;
+    esac
+done &
+
+# Update every full minute
 while true; do
-    BATTERY=$(upower -i $(upower -e | grep 'BAT') | grep -E "percentage" | awk '{print $2}')  # Get battery percentage
-
-    DATE=$(date "+%Y-%m-%d %H:%M:%S")
-    xsetroot -name "Bat: $BATTERY | $DATE"
-
-    sleep 10
+    sleep $((60 - $(date +%S)))
+    update_status
 done &  # Run in the background
 
-# for tap to click
+# Enable tap-to-click
 xinput set-prop "DELL0A6E:00 06CB:CE81 Touchpad" "libinput Tapping Enabled" 1
 
 exec dwm  # Start DWM
-
