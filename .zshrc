@@ -102,3 +102,14 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+
+# Load zsh-completions
+fpath=(/usr/share/zsh/site-functions $fpath)
+# Enable Completion
+autoload -Uz compinit && compinit
+zstyle ':completion:*' rehash true
+zstyle ':completion:*' menu select
+bindkey '^I' menu-complete
+
+
