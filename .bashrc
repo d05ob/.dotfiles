@@ -6,9 +6,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Automatically start tmux if not already inside tmux
-[ -z "$TMUX" ] && exec tmux
-
 # Enable colors for ls & grep
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
