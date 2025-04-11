@@ -6,6 +6,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Automatically start tmux if not already inside tmux
+[ -z "$TMUX" ] && exec tmux
+
 # Enable colors for ls & grep
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -28,6 +31,7 @@ FG_BOLDWHITE='\[\e[1;97m\]' # Bright White (Final Prompt Arrow)
 PROMPT_ARROW="➜"
 GIT_ICON=""  # Requires Nerd Font
 DIR_ICON=""  # Requires Nerd Font
+
 
 # PS1 Setup (Cyberpunk Colors + Icons)
 PS1="${FG_GREY}┌─${FG_CYAN} \u ${FG_GREY}at ${FG_BLUE}\h ${FG_GREY}in ${FG_SILVER}${DIR_ICON} \w \[$FG_YELLOW\]\$(parse_git_branch | sed 's/^/ '${GIT_ICON}' /')\n"
