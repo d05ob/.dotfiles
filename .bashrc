@@ -15,7 +15,7 @@ parse_git_branch() {
     git branch 2>/dev/null | grep '*' | sed 's/* //'
 }
 
-# Colors (Cyberpunk Blue-Grey Theme)
+# Colors 
 RESET='\[\e[0m\]'
 FG_CYAN='\[\e[1;36m\]'   # Bright Cyan (Username)
 FG_BLUE='\[\e[1;34m\]'   # Deep Blue (Hostname)
@@ -30,7 +30,7 @@ GIT_ICON=""  # Requires Nerd Font
 DIR_ICON=""  # Requires Nerd Font
 
 
-# PS1 Setup (Cyberpunk Colors + Icons)
+# PS1 Setup 
 PS1="${FG_GREY}┌─${FG_CYAN} \u ${FG_GREY}at ${FG_BLUE}\h ${FG_GREY}in ${FG_SILVER}${DIR_ICON} \w \[$FG_YELLOW\]\$(parse_git_branch | sed 's/^/ '${GIT_ICON}' /')\n"
 PS1+="${FG_GREY}└─${FG_BOLDWHITE}${PROMPT_ARROW} ${RESET}"
 

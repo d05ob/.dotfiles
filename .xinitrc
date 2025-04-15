@@ -1,7 +1,9 @@
 
 # Set wallpaper before launching DWM
-feh --bg-scale ~/.config/wallpapers/design.jpeg &
+feh --bg-scale ~/.config/wallpapers/skull.png &
 
+
+// Currently needs "upower" installed to work
 update_status() {
     BATTERY=$(upower -i $(upower -e | grep 'BAT') | grep -E "percentage" | awk '{print $2}')
     
