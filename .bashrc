@@ -39,3 +39,4 @@ bind 'set show-all-if-ambiguous off'  # Don't show all matches immediately
 bind 'set menu-complete-display-prefix on'  # Show common prefix
 bind '"\t": menu-complete'  # Tab cycles through matches
 bind '"\e[Z": menu-complete-backward'  # Shift+Tab cycles backwards
+export PATH=/home/pwe/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin
