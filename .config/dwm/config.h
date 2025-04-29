@@ -68,21 +68,21 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "brave", NULL };
-static const char *explorercmd[]  = { "thunar", NULL };
+static const char *explorercmd[]  = { "dolphin", NULL };
 static const char *discordcmd[]  = { "discord", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
     { 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("brightnessctl set +10%") },
     { 0,        XF86XK_MonBrightnessDown,      spawn,          SHCMD("brightnessctl set 10%-") },
-    { 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
-    { 0,         XF86XK_AudioLowerVolume,      spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
+    { 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1%") },
+    { 0,         XF86XK_AudioLowerVolume,      spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1%") },
     { 0,         XF86XK_AudioMute,             spawn,          SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
-    { 0,                        XK_Print,      spawn,          SHCMD("scrot -s ~/Pictures/screenshot_%Y-%m-%d_%H-%M-%S.png -e 'xclip -selection clipboard -t image/png -i $f'") },
-    { ShiftMask,                XK_Print,      spawn,          SHCMD("scrot ~/Pictures/screenshot_%Y-%m-%d_%H-%M-%S.png -e 'xclip -selection clipboard -t image/png -i $f'") },
-{ ControlMask, XK_Print, spawn, SHCMD("pgrep -x ffmpeg || ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 ~/Videos/screenrecord_$(date +%Y-%m-%d_%H-%M-%S).mp4") },
-{ ControlMask, XK_End, spawn, SHCMD("pkill -INT ffmpeg && xclip -selection clipboard -t video/mp4 -i $(ls -t ~/Videos/screenrecord_*.mp4 | head -n 1)") },
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+    { MODKEY,                        XK_backslash,      spawn,          SHCMD("scrot -s ~/Pictures/screenshot_%Y-%m-%d_%H-%M-%S.png -e 'xclip -selection clipboard -t image/png -i $f'") },
+    { MODKEY|ShiftMask,                XK_backslash,      spawn,          SHCMD("scrot ~/Pictures/screenshot_%Y-%m-%d_%H-%M-%S.png -e 'xclip -selection clipboard -t image/png -i $f'") },
+    { MODKEY|ControlMask, XK_backslash, spawn, SHCMD("pgrep -x ffmpeg || ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 ~/Videos/screenrecord_$(date +%Y-%m-%d_%H-%M-%S).mp4") },
+    { MODKEY|ControlMask, XK_End, spawn, SHCMD("pkill -INT ffmpeg && xclip -selection clipboard -t video/mp4 -i $(ls -t ~/Videos/screenrecord_*.mp4 | head -n 1)") },
+    { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = discordcmd } },
 	{ MODKEY,                       XK_n,      spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = explorercmd } },
