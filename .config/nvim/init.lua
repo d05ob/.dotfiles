@@ -1,5 +1,5 @@
 require("options")
-require("plugin_manager")
+require("manager")
 require("keymaps")
 require("lsp")
 require("colors")
