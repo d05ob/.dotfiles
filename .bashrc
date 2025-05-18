@@ -6,6 +6,12 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+
+# Auto-start tmux in interactive GUI terminals only
+if [ -z "$TMUX" ] && [ -n "$DISPLAY" ] && [ -t 1 ]; then
+    exec tmux
+fi
+
 # Enable colors for ls & grep
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
