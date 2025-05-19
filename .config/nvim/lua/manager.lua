@@ -74,15 +74,14 @@ require('lazy').setup({
 		end
 	},
 
-    {
-        'akinsho/bufferline.nvim',
-        version = "*",
-        dependencies = 'nvim-tree/nvim-web-devicons',
-        config = function()
-            require("bufferline").setup()
-        end
-    },
-
+{
+    'akinsho/bufferline.nvim',
+    version = "*",
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    config = function()
+        require("bufferline").setup(require("plugin_configs.bufferline"))
+    end
+},
     -- Markdown previewing (using browser)
     {
         "iamcco/markdown-preview.nvim",
