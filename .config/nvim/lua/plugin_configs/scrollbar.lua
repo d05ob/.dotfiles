@@ -1,4 +1,3 @@
-
 local mocha = require('catppuccin.palettes').get_palette("mocha")
 local frappe = require('catppuccin.palettes').get_palette("frappe")
 require("scrollbar").setup({

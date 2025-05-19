@@ -45,11 +45,6 @@ require('lazy').setup({
 		end
 	},
 
-	-- Makes resizing splits more intuitive
-	{
-		'mrjones2014/smart-splits.nvim',
-	},
-
     -- File explorer
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -57,7 +52,6 @@ require('lazy').setup({
           "nvim-lua/plenary.nvim",
           "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
           "MunifTanjim/nui.nvim",
-          -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
         config = function()
             require("plugin_configs.neotree")

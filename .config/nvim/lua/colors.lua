@@ -1,6 +1,4 @@
-vim.cmd.colorscheme("catppuccin-mocha")
-
---vim.cmd("highlight LineNr guifg=#9F9FAF")
+vim.cmd.colorscheme("catppuccin-macchiato")
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

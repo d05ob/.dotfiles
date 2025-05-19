@@ -5,7 +5,7 @@ require("neo-tree").setup({
     },
     filesystem = {
         filtered_items = {
-            show_hidden_count = false,
+            show_hidden_count = true,
         },
     },
 })
