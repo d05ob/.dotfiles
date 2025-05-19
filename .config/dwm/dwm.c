@@ -1744,9 +1744,19 @@ togglefloating(const Arg *arg)
 	if (selmon->sel->isfullscreen) /* no support for fullscreen windows */
 		return;
 	selmon->sel->isfloating = !selmon->sel->isfloating || selmon->sel->isfixed;
-	if (selmon->sel->isfloating)
-		resize(selmon->sel, selmon->sel->x, selmon->sel->y,
-			selmon->sel->w, selmon->sel->h, 0);
+	if (selmon->sel->isfloating){
+
+		// resize(selmon->sel, selmon->sel->x, selmon->sel->y, selmon->sel->w, selmon->sel->h, 0);
+        int fw = selmon->ww / 2;
+        int fh = selmon->wh / 2;
+
+        // Center the floating window on the monitor
+        int fx = selmon->wx + (selmon->ww - fw) / 2;
+        int fy = selmon->wy + (selmon->wh - fh) / 2;
+
+        resize(selmon->sel, fx, fy, fw, fh, False);
+
+    }
 	arrange(selmon);
 }
 
