@@ -7,22 +7,20 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
-static const char col_gray1[]       = "#1d1f21";
-static const char col_gray2[]       = "#282a2e";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#ffffff";
-static const char col_cyan[]        = "#1d1d21";
-//
-// static const char *colors[][3]      = {
-// 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-//     [SchemeSel]  = { col_gray4, col_cyan,  col_gray4  },
-// };
+static const char *fonts[]          = { "MesloLGS Nerd Font:size=12" };
+static const char dmenufont[]       = "MesloLGS Nerd Font:size=12";
+
+static const char col_bg[]     = "#1e1e2e"; // dark bluish background
+static const char col_fg[]     = "#cdd6f4"; // light foreground
+static const char col_border[] = "#89b4fa"; // blue border for active
+static const char col_inactive_border[] = "#313244"; // darker inactive border
+static const char col_sel_bg[] = "#1e1e2e"; // selected tag bg
+static const char col_sel_fg[] = "#f5c2e7"; // selected tag fg (pinkish)
 
 static const char *colors[][3] = {
-    [SchemeNorm] = { "#bbbbbb", "#1d1f21", "#282a2e" }, // Light gray text, dark bg
-    [SchemeSel]  = { "#ffffff", "#1d1f21", "#ffffff" }, // White text, same bg, soft blue border
+    /*               fg          bg          border           */
+    [SchemeNorm] = { col_fg,     col_bg,     col_inactive_border },
+    [SchemeSel]  = { col_sel_fg, col_sel_bg, col_border          },
 };
 
 /* tagging */
@@ -65,7 +63,16 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = {
+    "dmenu_run",
+    "-m", dmenumon,
+    "-fn", dmenufont,
+    "-nb", col_bg,       // normal background (same as dwm bg)
+    "-nf", col_fg,       // normal foreground (same as dwm fg)
+    "-sb", col_sel_bg,   // selected background (same as active window bg)
+    "-sf", col_sel_fg,   // selected foreground (same as active window fg)
+    NULL
+};
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "brave", NULL };
 static const char *explorercmd[]  = { "thunar", NULL };
