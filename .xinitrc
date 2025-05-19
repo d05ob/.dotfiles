@@ -1,7 +1,7 @@
 
 # Set wallpaper before launching DWM
 # feh --bg-scale ~/.config/wallpapers/skull.png &
-feh --bg-fill ~/.config/wallpapers/earth.jpeg &
+feh --bg-fill ~/.config/wallpapers/bunnies-road.png &
 
 // Currently needs "upower" installed to work
 update_status() {
