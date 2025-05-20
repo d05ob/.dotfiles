@@ -232,4 +232,17 @@ require('lazy').setup({
             cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end,
     },
+    {
+        "otavioschwanck/arrow.nvim",
+        dependencies = {
+            { "nvim-tree/nvim-web-devicons" },
+            -- or if using `mini.icons`
+            -- { "echasnovski/mini.icons" },
+        },
+        opts = {
+            show_icons = true,
+            leader_key = ';', -- Recommended to be a single key
+            buffer_leader_key = 'm', -- Per Buffer Mappings
+        }
+    },
 })

@@ -44,6 +44,7 @@ A curated and minimal dotfiles setup tailored for a suckless-inspired Linux envi
   * UI enhancements with `lualine.nvim`, `bufferline.nvim`, and `catppuccin`
   * Syntax highlighting via `nvim-treesitter`
   * File management with `neo-tree.nvim`
+  * Jumping with `arrow.nvim`
 
 ### 🧰 Shell & System
 
