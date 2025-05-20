@@ -76,7 +76,7 @@ static const char *dmenucmd[] = {
     NULL
 };
 static const char *termcmd[]  = { "st", NULL };
-static const char *browsercmd[]  = { "brave", NULL };
+static const char *browsercmd[]  = { "firefox", NULL };
 static const char *explorercmd[]  = { "thunar", NULL };
 static const char *discordcmd[]  = { "discord", NULL };
 
