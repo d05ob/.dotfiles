@@ -1,6 +1,6 @@
 # 🛠️ My Dotfiles Setup
 
-A curated and minimal dotfiles setup tailored for a suckless-inspired Linux environment with Neovim as the primary code editor.
+A curated and minimal dotfiles setup tailored for a suckless-inspired Linux environment.
 
 ---
 
