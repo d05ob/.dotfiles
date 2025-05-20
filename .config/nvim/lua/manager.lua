@@ -138,50 +138,63 @@ require('lazy').setup({
 	},
 
 	-- LSP Configuration & Plugins
-	{
-		'neovim/nvim-lspconfig',
-		dependencies = {
-			{
-				'williamboman/mason.nvim',
-				config = true
-			},
-			'williamboman/mason-lspconfig.nvim',
-			{ 
-				'j-hui/fidget.nvim',
-				tag = 'legacy', opts = {}
-			},
-			'folke/neodev.nvim',
-		},
-	},
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                vim.fn.stdpath("config") .. "/lua",
+            },
+        },
+        dependencies = {
+            "neovim/nvim-lspconfig",
+        },
+    },
 
-	-- Autocompletion
-	{
-		'hrsh7th/nvim-cmp',
-		dependencies = {
-			-- Snippet Engine & its associated nvim-cmp source
-			'L3MON4D3/LuaSnip',
-			'saadparwaiz1/cmp_luasnip',
+    {
+        "williamboman/mason.nvim",
+        config = true,
+    },
 
-			-- Adds LSP completion capabilities
-			'hrsh7th/cmp-nvim-lsp',
+    {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "neovim/nvim-lspconfig",
+        },
+        config = function()
+            require("plugin_configs.mason") -- moved logic here
+        end,
+    },
 
-			-- Adds a number of user-friendly snippets
-			'rafamadriz/friendly-snippets',
-		},
-		config = function()
-			require("plugin_configs.cmp")
-		end
-	},
+    {
+        "neovim/nvim-lspconfig",
+        config = function()
+            require("lsp") -- actual LSP config
+        end,
+    },
 
-	-- Treesitter
-	{
-		'nvim-treesitter/nvim-treesitter',
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "L3MON4D3/LuaSnip",
+            "saadparwaiz1/cmp_luasnip",
+            "rafamadriz/friendly-snippets",
+        },
+        config = function()
+            require('plugin_configs.cmp').setup()
+        end,
+    },
+    -- Treesitter
+    {
+        'nvim-treesitter/nvim-treesitter',
 
-		dependencies = {
-			'nvim-treesitter/nvim-treesitter-textobjects',
-		},
-		build = ':TSUpdate',
-		config = function()
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter-textobjects',
+        },
+        build = ':TSUpdate',
+        config = function()
 			require("plugin_configs.treesitter")
 		end
 	},

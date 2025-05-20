@@ -1,6 +1,6 @@
 require("options")
 require("manager")
-require("keymaps")
 require("lsp")
+require("keymaps")
 require("colors")
 

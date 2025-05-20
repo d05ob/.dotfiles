@@ -1,65 +1,46 @@
+-- lua/lsp.lua
 
--- [[ Configure LSP ]]
---  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
-	-- In this case, we create a function that lets us more easily define mappings specific
-	-- for LSP related items. It sets the mode, buffer and description for us each time.
-	local nmap = function(keys, func, desc)
-		if desc then
-			desc = 'LSP: ' .. desc
-		end
+  local nmap = function(keys, func, desc)
+    if desc then desc = "LSP: " .. desc end
+    vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+  end
 
-		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-	end
-    -- see functions in current file
-	nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+  nmap("K", vim.lsp.buf.hover, "Hover Documentation")
 
-	-- See `:help K` for why this keymap
-	nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-
-	-- Create a command `:Format` local to the LSP buffer
-	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-		vim.lsp.buf.format()
-	end, { desc = 'Format current buffer with LSP' })
+  vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
+    vim.lsp.buf.format()
+  end, { desc = "Format current buffer with LSP" })
 end
 
--- Enable the following language servers
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config.
-local servers = {
-	clangd = {},
-	gopls = {},
-	pyright = {},
-	rust_analyzer = {},
-	lua_ls = {
-		Lua = {
-			workspace = { checkThirdParty = false },
-			telemetry = { enable = false },
-		},
-	},
-}
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- Setup neovim lua configuration
-require('neodev').setup()
+vim.lsp.enable({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  servers = {
+    lua_ls = {
+      settings = {
+        Lua = {
+          workspace = { checkThirdParty = false },
+          telemetry = { enable = false },
+        },
+      },
+    },
+    clangd = {},
+    pyright = {},
+    rust_analyzer = {},
+    gopls = {},
+    html = {},
+    cssls = {},
+    ts_ls = {},
+  },
+})
 
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+vim.o.signcolumn = "yes" 
 
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
+vim.diagnostic.config({
+  virtual_text = true,     -- show error/warning text inline 
+})
 
-mason_lspconfig.setup {
-	ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-	function(server_name)
-		require('lspconfig')[server_name].setup {
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = servers[server_name],
-		}
-	end,
-}

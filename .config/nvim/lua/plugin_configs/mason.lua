@@ -1,14 +1,16 @@
+
+-- lua/plugin_configs/mason.lua
 require("mason").setup()
-require("mason-lspconfig").setup({
-    ensure_installed = {
-        "pyright",        -- Python
-        "rust_analyzer",  -- Rust
-        "typescript-language-server",
-        "html",          -- HTML
-        "cssls",          -- CSS
-        "clangd",         -- C & C++
-        "omnisharp",      -- C#
-        "lua_ls",
-    },
-    automatic_installation = true,
-})
+
+require("mason-lspconfig").setup {
+  ensure_installed = {
+    "lua_ls",       -- Lua
+    "clangd",       -- C/C++
+    "pyright",      -- Python
+    "rust_analyzer",-- Rust
+    "gopls",        -- Go
+    "html",         -- Web
+    "cssls",
+    "ts_ls",
+  }
+}
