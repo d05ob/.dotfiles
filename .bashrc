@@ -1,4 +1,3 @@
-
 #
 # ~/.bashrc
 #
@@ -15,7 +14,26 @@ fi
 # Enable colors for ls & grep
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias ..='cd ..'
+alias ll='ls -AlF'
+alias la='ls -A'
+ncd() {
+  CUR_DIR=$(pwd)
+  case "$CUR_DIR" in
+    "$HOME"/*|"$HOME")
+      FILE=$(find . -type f 2>/dev/null | fzf --preview "bat --style=numbers --color=always --line-range=1:100 {}" --preview-window=right:60%)
+      if [ -n "$FILE" ]; then
+        DIR=$(dirname "$FILE")
+        cd "$DIR" && nvim "$(basename "$FILE")"
+      fi
+      ;;
+    *)
+      echo "You're outside your home directory. ncd only works inside \$HOME."
+      ;;
+  esac
+}
 
+alias nv='nvim'
 # Function to get Git branch
 parse_git_branch() {
     git branch 2>/dev/null | grep '*' | sed 's/* //'
@@ -45,4 +63,6 @@ bind 'set show-all-if-ambiguous off'  # Don't show all matches immediately
 bind 'set menu-complete-display-prefix on'  # Show common prefix
 bind '"\t": menu-complete'  # Tab cycles through matches
 bind '"\e[Z": menu-complete-backward'  # Shift+Tab cycles backwards
+
+
 export PATH=/home/pwe/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin
