@@ -2,8 +2,10 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-# Automatically start X (DWM) when logging into TTY1
-if [[ -z $DISPLAY ]] && [[ $(tty) == /dev/tty1 ]]; then
-     startx
+if [[ -z "$DISPLAY" ]]; then
+    if [[ "$(tty)" == "/dev/tty1" ]]; then
+        startx
+    elif [[ "$(tty)" == "/dev/tty2" ]]; then
+        hyprland
+    fi
 fi
-

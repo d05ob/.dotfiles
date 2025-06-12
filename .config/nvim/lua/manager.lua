@@ -245,4 +245,19 @@ require('lazy').setup({
             buffer_leader_key = 'm', -- Per Buffer Mappings
         }
     },
+    {
+        "github/copilot.vim",
+        lazy = false
+    },
+    -- {
+    --     "Exafunction/codeium.nvim",
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --         "hrsh7th/nvim-cmp"
+    --     },
+    --     config = function()
+    --         require("codeium").setup({})
+    --     end
+    -- },
+    --
 })
