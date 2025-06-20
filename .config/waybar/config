@@ -137,3 +137,5 @@
     "tooltip": false,
     "on-click": "bash -c 'chosen=$(echo -e \"Shutdown\\nReboot\\nSuspend\\nLogout\" | wofi --dmenu --prompt=\"Power\"); case $chosen in Shutdown) systemctl poweroff ;; Reboot) systemctl reboot ;; Suspend) systemctl suspend ;; Logout) pkill -KILL -u $USER ;; esac'"
 }
+}
+
