@@ -30,6 +30,21 @@ ncd() {
   esac
 }
 
+nc() {
+  CUR_DIR=$(pwd)
+  case "$CUR_DIR" in
+    "$HOME"/*|"$HOME")
+      FILE=$(find . -type f 2>/dev/null | fzf --preview "bat --style=numbers --color=always --line-range=1:100 {}" --preview-window=right:60%)
+      if [ -n "$FILE" ]; then
+        nvim "$FILE"
+      fi
+      ;;
+    *)
+      echo "You're outside your home directory. nc only works inside \$HOME."
+      ;;
+  esac
+}
+
 alias nv='nvim'
 
 parse_git_branch() {
