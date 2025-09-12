@@ -247,7 +247,8 @@ require('lazy').setup({
     },
     {
         "github/copilot.vim",
-        lazy = false
+        lazy = false;
+        enabled = false;
     },
     -- {
     --     "Exafunction/codeium.nvim",
