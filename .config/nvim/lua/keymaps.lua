@@ -15,9 +15,13 @@ nnoremap('<C-b>', ':Neotree toggle<CR>', { silent = true })
 -- Format current buffer
 nnoremap('<leader>f', ':Format<CR>', { silent = true })
 
+-- Close current buffer
+nnoremap('<leader><leader>', ':bdelete<CR>', {silent = true})
+
 -- Buffer navigation
 nnoremap('<leader><Tab>', ':bnext<CR>')
 nnoremap('<leader><S-Tab>', ':bprevious<CR>')
+
 
 -- Diagnostics
 nnoremap('<leader>d', function()
