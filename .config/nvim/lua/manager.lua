@@ -250,6 +250,13 @@ require('lazy').setup({
         lazy = false;
         enabled = false;
     },
+    {
+        "goolord/alpha-nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("plugin_configs.alpha") -- moved logic here
+        end,
+    }
     -- {
     --     "Exafunction/codeium.nvim",
     --     dependencies = {
