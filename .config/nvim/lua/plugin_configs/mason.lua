@@ -12,5 +12,6 @@ require("mason-lspconfig").setup {
     "html",         -- Web
     "cssls",
     "ts_ls",
+    "jdtls",
   }
 }
