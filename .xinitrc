@@ -35,4 +35,6 @@ done &  # Run in the background
 # Enable tap-to-click
 xinput set-prop "DELL0A6E:00 06CB:CE81 Touchpad" "libinput Tapping Enabled" 1
 
+mouseless --config ~/.config/mouseless/config.yaml &
+
 exec dwm  # Start DWM
