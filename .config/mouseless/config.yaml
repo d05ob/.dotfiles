@@ -1,0 +1,56 @@
+
+# Default speeds (tweak if it feels too slow/fast)
+baseMouseSpeed: 600.0
+baseScrollSpeed: 30.0
+
+# Max time (ms) between keys to count as a combo (for S+D etc.)
+comboTime: 100
+
+layers:
+  # Normal typing layer
+  - name: initial
+    bindings:
+      # Left Ctrl:
+      # - quick tap (no other key, <200ms) -> switch to free layer
+      # - hold / use with another key -> acts as normal leftctrl (for Ctrl+C, Ctrl+S, etc.)
+      leftctrl: tap-hold layer free ; leftctrl ; 200
+
+  # "Free mode" layer
+  - name: free
+    passThrough: true
+    bindings:
+      # Tap Ctrl again to exit back to normal
+      leftctrl: layer initial
+      # Also allow Esc to bail out
+      esc: layer initial
+
+      # Movement — IJKL
+      i: move 0 -1   # up
+      k: move 0  1   # down
+      j: move -1 0   # left
+      l: move 1  0   # right
+
+      # Scroll — M and comma (,)
+      m: scroll up
+      comma: scroll down
+
+      # Left click — Space
+      space: button left
+
+      # Right click — Shift + Space
+      leftshift: button right
+
+      # Speed controls
+      # A = slow
+      a: speed 0.25
+
+      # S / D / F = faster tiers
+      s: speed 1.5
+      d: speed 2.5
+      f: speed 4.0
+
+      # Combos of S, D, F → even faster
+      s+d: speed 3.0
+      s+f: speed 4.5
+      d+f: speed 5.0
+
